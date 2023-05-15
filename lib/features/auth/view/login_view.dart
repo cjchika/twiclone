@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:twiclone/common/small_rounded_button.dart';
-import 'package:twiclone/constants/ui_constants.dart';
+import 'package:twiclone/common/common.dart';
+import 'package:twiclone/constants/constants.dart';
 import 'package:twiclone/features/auth/widgets/auth_field.dart';
 import 'package:twiclone/theme/palette.dart';
 
