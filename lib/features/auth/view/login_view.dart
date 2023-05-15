@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:twiclone/constants/ui_constants.dart';
 
 class LoginView extends StatefulWidget{
   const LoginView({super.key});
@@ -8,8 +9,9 @@ class LoginView extends StatefulWidget{
 }
 
 class _LoginViewState extends State<LoginView> {
+  final appbar = UIConstants.appBar();
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(appBar: appbar);
   }
 }
