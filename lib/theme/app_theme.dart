@@ -3,6 +3,7 @@ import 'package:twiclone/theme/palette.dart';
 
 class AppTheme {
   static ThemeData theme = ThemeData.dark().copyWith(
+    useMaterial3: true,
     scaffoldBackgroundColor: Pallete.backgroundColor,
     appBarTheme: const AppBarTheme(
       backgroundColor: Pallete.backgroundColor,
