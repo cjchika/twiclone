@@ -3,8 +3,12 @@ import 'package:appwrite/models.dart' as model;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:twiclone/core/core.dart';
+import 'package:twiclone/core/providers.dart';
 
-final authAPIProvider = Provider((ref) {});
+final authAPIProvider = Provider((ref) {
+  final account = ref.watch(appwriteAccountProvider);
+  return AuthAPI(account:account);
+});
 
 abstract class IAuthAPI {
   FutureEither<model.User> signUp({
