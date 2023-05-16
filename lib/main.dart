@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 // import 'package:twiclone/features/auth/view/login_view.dart';
 import 'package:twiclone/features/auth/view/signup_view.dart';
 import 'package:twiclone/theme/theme.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    const ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

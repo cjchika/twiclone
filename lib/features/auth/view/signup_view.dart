@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:twiclone/common/common.dart';
 import 'package:twiclone/constants/constants.dart';
+import 'package:twiclone/features/auth/controller/auth_controller.dart';
 import 'package:twiclone/features/auth/widgets/auth_field.dart';
 import 'package:twiclone/theme/palette.dart';
 
-class SignUpView extends StatefulWidget {
+class SignUpView extends ConsumerStatefulWidget {
   const SignUpView({super.key});
 
   static route() => MaterialPageRoute(
@@ -13,10 +15,10 @@ class SignUpView extends StatefulWidget {
       );
 
   @override
-  State<StatefulWidget> createState() => _SignUpViewState();
+  ConsumerState<SignUpView> createState() => _SignUpViewState();
 }
 
-class _SignUpViewState extends State<SignUpView> {
+class _SignUpViewState extends ConsumerState<SignUpView> {
   final appbar = UIConstants.appBar();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -26,6 +28,14 @@ class _SignUpViewState extends State<SignUpView> {
     super.dispose();
     emailController.dispose();
     passwordController.dispose();
+  }
+
+  void onSignup() {
+    ref.read(authControllerProvider.notifier).signUp(
+          email: emailController.text,
+          password: passwordController.text,
+          context: context,
+        );
   }
 
   @override
@@ -45,7 +55,7 @@ class _SignUpViewState extends State<SignUpView> {
                 Align(
                   alignment: Alignment.topRight,
                   child: SmallRoundedButton(
-                    onTap: () {},
+                    onTap: onSignup,
                     text: "Done",
                   ),
                 ),

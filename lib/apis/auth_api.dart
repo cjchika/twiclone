@@ -7,7 +7,7 @@ import 'package:twiclone/core/providers.dart';
 
 final authAPIProvider = Provider((ref) {
   final account = ref.watch(appwriteAccountProvider);
-  return AuthAPI(account:account);
+  return AuthAPI(account: account);
 });
 
 abstract class IAuthAPI {
@@ -33,7 +33,7 @@ class AuthAPI implements IAuthAPI {
       return right(account);
     } on AppwriteException catch (e, stackTrace) {
       return left(
-        Failure(e.message??'Some unexpected error occurred', stackTrace),
+        Failure(e.message ?? 'Some unexpected error occurred', stackTrace),
       );
     } catch (e, stackTrace) {
       return left(Failure(e.toString(), stackTrace));
