@@ -8,12 +8,15 @@ import 'package:twiclone/theme/palette.dart';
 class SignUpView extends StatefulWidget {
   const SignUpView({super.key});
 
+  static route() => MaterialPageRoute(
+        builder: (context) => const SignUpView(),
+      );
+
   @override
   State<StatefulWidget> createState() => _SignUpViewState();
 }
 
 class _SignUpViewState extends State<SignUpView> {
-
   final appbar = UIConstants.appBar();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -48,16 +51,20 @@ class _SignUpViewState extends State<SignUpView> {
                 ),
                 const SizedBox(height: 30),
                 RichText(
-                    text:  TextSpan(
-                        text: "Don't have an account?",
-                        style: const TextStyle( fontSize: 16),
+                    text: TextSpan(
+                        text: "Already have an account?",
+                        style: const TextStyle(fontSize: 16),
                         children: [
-                          TextSpan(
-                            text: " Sign up",
-                            style: const TextStyle(color: Pallete.blueColor, fontSize: 16),
-                            recognizer: TapGestureRecognizer()..onTap = () { },
-                          ),
-                        ]))
+                      TextSpan(
+                        text: " Login",
+                        style: const TextStyle(
+                            color: Pallete.blueColor, fontSize: 16),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.push(context, SignUpView.route());
+                          },
+                      ),
+                    ]))
               ],
             ),
           ),

@@ -8,6 +8,10 @@ import 'package:twiclone/theme/palette.dart';
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
 
+  static route() => MaterialPageRoute(
+    builder: (context) => const LoginView(),
+  );
+
   @override
   State<StatefulWidget> createState() => _LoginViewState();
 }
@@ -47,16 +51,25 @@ class _LoginViewState extends State<LoginView> {
                 ),
                 const SizedBox(height: 30),
                 RichText(
-                    text:  TextSpan(
-                        text: "Don't have an account?",
-                        style: const TextStyle( fontSize: 16),
-                        children: [
+                  text: TextSpan(
+                    text: "Don't have an account?",
+                    style: const TextStyle(fontSize: 16),
+                    children: [
                       TextSpan(
                         text: " Sign up",
-                        style: const TextStyle(color: Pallete.blueColor, fontSize: 16),
-                        recognizer: TapGestureRecognizer()..onTap = () { },
+                        style: const TextStyle(
+                            color: Pallete.blueColor, fontSize: 16),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.push(
+                              context,
+                              LoginView.route(),
+                            );
+                          },
                       ),
-                    ]))
+                    ],
+                  ),
+                )
               ],
             ),
           ),
