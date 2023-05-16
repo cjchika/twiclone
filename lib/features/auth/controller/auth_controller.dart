@@ -26,5 +26,6 @@ class AuthController extends StateNotifier<bool> {
       (l) => showSnackBar(context, l.message),
       (r) => print(r.email),
     );
+    state = false;
   }
 }
