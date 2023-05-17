@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:twiclone/common/loading_page.dart';
+import 'package:twiclone/features/auth/controller/auth_controller.dart';
 
 // import 'package:twiclone/features/auth/view/login_view.dart';
 import 'package:twiclone/features/auth/view/signup_view.dart';
@@ -13,17 +15,20 @@ void main() {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: AppTheme.theme,
-      home: const SignUpView(),
+      home: ref.watch(currentUserAccountProvider).when(
+          data: (user) {},
+          error: (error, st) {},
+          loading: () => const LoadingPage()),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:appwrite/models.dart' as model;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:twiclone/apis/auth_api.dart';
 import 'package:twiclone/core/utils.dart';
@@ -10,12 +11,19 @@ final authControllerProvider =
   return AuthController(authAPI: ref.watch(authAPIProvider));
 });
 
+final currentUserAccountProvider = FutureProvider((ref)  {
+  final authController = ref.watch(authControllerProvider.notifier);
+  return authController.currentUser();
+});
+
 class AuthController extends StateNotifier<bool> {
   AuthController({required AuthAPI authAPI})
       : _authAPI = authAPI,
         super(false);
 
   final AuthAPI _authAPI;
+
+  Future<model.User?> currentUser() => _authAPI.currentUserAccount();
 
   void signUp({
     required String email,
