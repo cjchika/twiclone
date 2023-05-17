@@ -5,6 +5,7 @@ import 'package:twiclone/common/common.dart';
 import 'package:twiclone/common/loading_page.dart';
 import 'package:twiclone/constants/constants.dart';
 import 'package:twiclone/features/auth/controller/auth_controller.dart';
+import 'package:twiclone/features/auth/view/login_view.dart';
 import 'package:twiclone/features/auth/widgets/auth_field.dart';
 import 'package:twiclone/theme/palette.dart';
 
@@ -12,7 +13,7 @@ class SignUpView extends ConsumerStatefulWidget {
   const SignUpView({super.key});
 
   static route() => MaterialPageRoute(
-        builder: (context) => const SignUpView(),
+        builder: (context) => const LoginView(),
       );
 
   @override
@@ -52,6 +53,8 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
                     children: [
+                      const Text("Sign Up", style: TextStyle(color: Colors.white, fontSize: 24)),
+                      const SizedBox(height: 40),
                       AuthField(controller: emailController, hintText: "Email"),
                       const SizedBox(height: 20),
                       AuthField(

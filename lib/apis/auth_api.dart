@@ -15,6 +15,11 @@ abstract class IAuthAPI {
     required String email,
     required String password,
   });
+
+  FutureEither<model.Session> login({
+    required String email,
+    required String password,
+  });
 }
 
 class AuthAPI implements IAuthAPI {
@@ -34,6 +39,22 @@ class AuthAPI implements IAuthAPI {
     } on AppwriteException catch (e, stackTrace) {
       return left(
         Failure(e.message ?? 'Some unexpected error occurred', stackTrace),
+      );
+    } catch (e, stackTrace) {
+      return left(Failure(e.toString(), stackTrace));
+    }
+  }
+
+  @override
+  FutureEither<model.Session> login(
+      {required String email, required String password}) async {
+    try {
+      final session =
+          await _account.createEmailSession(email: email, password: password);
+      return right(session);
+    } on AppwriteException catch (e, stackTrace) {
+      return left(
+        Failure(e.message ?? "Something went wrong", stackTrace),
       );
     } catch (e, stackTrace) {
       return left(Failure(e.toString(), stackTrace));
